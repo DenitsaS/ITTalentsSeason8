@@ -1,4 +1,4 @@
-package com.bigfatproject.tictactoe;
+	package com.bigfatproject.tictactoe;
 
 import java.util.Scanner;
 
@@ -10,7 +10,7 @@ public class TicTacToeGame extends Game {
 	char botCh;
 	
 	public TicTacToeGame() {
-		this.player = new TicTacToeHuman();
+		this.human = new TicTacToeHuman();
 		this.bot = new TicTacToeBot();
 		this.board = new TicTacToeBoard();
 	}
@@ -31,7 +31,7 @@ public class TicTacToeGame extends Game {
 		board.printBoard();
 		while(!board.hasGameEnded()){
 			if(isHumansTurn){
-				int[] coordinates = player.makeMove();
+				int[] coordinates = human.makeMove();
 				
 				if(!areCoordinatesValid(coordinates[0], coordinates[1])){
 					System.out.println("Invalid coordinates");

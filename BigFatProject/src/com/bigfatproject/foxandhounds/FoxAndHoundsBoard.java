@@ -4,8 +4,12 @@ import com.bigfatproject.Board;
 
 public class FoxAndHoundsBoard extends Board {
 	private char winningChar;
-
+	private char blackChar = 'X';
+	private char redChar = '.';
+	private char foxChar = 'F';
+	private char houndChar = 'H';
 	public FoxAndHoundsBoard() {
+		
 		this.colsCount = 8;
 		this.rowsCount = 8;
 		this.winningChar = 0;
@@ -13,32 +17,32 @@ public class FoxAndHoundsBoard extends Board {
 		for (int i = 0; i < this.rowsCount; i++) {
 			for (int j = 0; j < this.colsCount; j++) {
 				if((i + j) % 2 == 0){
-					boardArray[i][j] = '.';
+					boardArray[i][j] = redChar;
 				} else {
-					boardArray[i][j] = 'X';
+					boardArray[i][j] = blackChar;
 				}
 			}
 		}
-		boardArray[0][1] = 'H';
-		boardArray[0][3] = 'H';
-		boardArray[0][5] = 'H';
-		boardArray[0][7] = 'H';
-		boardArray[7][0] = 'F';
+		boardArray[0][1] = houndChar;
+		boardArray[0][3] = houndChar;
+		boardArray[0][5] = houndChar;
+		boardArray[0][7] = houndChar;
+		boardArray[7][0] = foxChar;
 
 	}
 
 	@Override
 	public boolean hasGameEnded() {
 
-		if(boardArray[0][1] == 'F' || boardArray[0][3] == 'F' || boardArray[0][5] == 'F' || boardArray[0][7] == 'F'){
-			this.winningChar = 'F';
+		if(boardArray[0][1] == foxChar || boardArray[0][3] == foxChar || boardArray[0][5] == foxChar || boardArray[0][7] == foxChar){
+			this.winningChar = foxChar;
 			return true;
 		}
 		Point foxPosition = new Point(7,0);
 		
 		for (int i = 0; i < boardArray.length; i++) {
 			for (int j = 0; j < boardArray.length; j++) {
-				if(boardArray[i][j] == 'F'){
+				if(boardArray[i][j] == foxChar){
 					foxPosition = new Point(i , j);
 					break;
 					
@@ -46,12 +50,12 @@ public class FoxAndHoundsBoard extends Board {
 			}
 		}
 		
-		boolean canGoUpLeft = foxPosition.getX() > 0 && foxPosition.getY() > 0 && boardArray[foxPosition.getX() - 1][foxPosition.getY() - 1] != 'H';
-		boolean canGoUpRight =   foxPosition.getX() > 0 && foxPosition.getY() < 7 && boardArray[foxPosition.getX() - 1][foxPosition.getY() + 1] != 'H';
-		boolean canGoDownLeft =  foxPosition.getX() < 7 && foxPosition.getY() > 0 && boardArray[foxPosition.getX() + 1][foxPosition.getY() - 1] != 'H';
-		boolean canGoDownRight =  foxPosition.getX() < 7 && foxPosition.getY() < 7 && boardArray[foxPosition.getX() + 1][foxPosition.getY() + 1]!= 'H';
+		boolean canGoUpLeft = foxPosition.getX() > 0 && foxPosition.getY() > 0 && boardArray[foxPosition.getX() - 1][foxPosition.getY() - 1] != houndChar;
+		boolean canGoUpRight =   foxPosition.getX() > 0 && foxPosition.getY() < 7 && boardArray[foxPosition.getX() - 1][foxPosition.getY() + 1] != houndChar;
+		boolean canGoDownLeft =  foxPosition.getX() < 7 && foxPosition.getY() > 0 && boardArray[foxPosition.getX() + 1][foxPosition.getY() - 1] != houndChar;
+		boolean canGoDownRight =  foxPosition.getX() < 7 && foxPosition.getY() < 7 && boardArray[foxPosition.getX() + 1][foxPosition.getY() + 1]!= houndChar;
 		if(!canGoDownLeft && !canGoDownRight && !canGoUpLeft && !canGoUpRight){
-			this.winningChar = 'H';
+			this.winningChar = houndChar;
 		}
 		
 		return false;
@@ -64,14 +68,14 @@ public class FoxAndHoundsBoard extends Board {
 	
 	
 	public void setChar(char ch, Point oldPos, Direction direction) {
-		if(ch == 'H' && oldPos.canMove(direction) && (direction == Direction.DownLeft || direction == Direction.DownRight)){
-			boardArray[oldPos.getX()][oldPos.getY()] = 'R' ;
+		if(ch == houndChar && oldPos.canMove(direction) && (direction == Direction.DownLeft || direction == Direction.DownRight)){
+			boardArray[oldPos.getX()][oldPos.getY()] = blackChar ;
 			oldPos.move(direction);
-			boardArray[oldPos.getX()][oldPos.getY()] = 'H' ;
-		} else if(ch == 'F' && oldPos.canMove(direction)) {
-			boardArray[oldPos.getX()][oldPos.getY()] = 'R' ;
+			boardArray[oldPos.getX()][oldPos.getY()] = houndChar ;
+		} else if(ch == foxChar && oldPos.canMove(direction)) {
+			boardArray[oldPos.getX()][oldPos.getY()] = blackChar ;
 			oldPos.move(direction);
-			boardArray[oldPos.getX()][oldPos.getY()] = 'F' ;
+			boardArray[oldPos.getX()][oldPos.getY()] = foxChar ;
 		}
 	}
 
