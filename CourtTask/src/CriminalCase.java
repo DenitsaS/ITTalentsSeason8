@@ -3,7 +3,7 @@ import java.util.Set;
 public class CriminalCase extends Case{
 	PublicProsecuter publicProsecuter;
 	CriminalCase(Judge judge, Set<JuryMan> juryMen, PublicProsecuter publicProsecuter, Defendant defendant, Set<Witness> witnesses) {
-		super(judge, defendant, witnesses, juryMen);
+		super(judge, defendant, witnesses);
 		if(juryMen.size() == 13){
 			this.juryMen = juryMen;
 		}

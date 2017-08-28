@@ -9,10 +9,10 @@ public abstract class Case {
 	Defendant defendant;
 	Set<JuryMan>  juryMen;
 	Set<Witness> witnesses;
-	Case(Judge judge, Defendant defendant, Set<Witness> witnesses, Set<JuryMan> juryMen){
+	Case(Judge judge, Defendant defendant, Set<Witness> witnesses){
 		this.witnesses = witnesses;
-		this.juryMen = juryMen;
 		countOfGuiltyBlamers = 0;
+		this.juryMen = new HashSet();
 		if(judge != null){
 			this.judge = judge;
 		}

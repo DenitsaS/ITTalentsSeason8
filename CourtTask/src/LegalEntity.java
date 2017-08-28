@@ -5,5 +5,10 @@ public abstract class LegalEntity extends Person{
 	LegalEntity(String name) {
 		super(name);
 	}
+	
+	@Override
+	public String toString() {
+		return name + " - " + countOfCases;
+	}
 
 }

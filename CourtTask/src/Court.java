@@ -19,6 +19,23 @@ public class Court {
 		if(legalEntities != null){
 			this.legalEntities = legalEntities;
 		}
+		
+	}
+	
+
+	@Override
+	public String toString() {
+		String string = "";
+		for (int i = 0; i < legalEntities.size(); i++) {
+			string.concat(legalEntities.toString()+ "/n");
+		}
+		return string;
+	}
+	
+	void printInfo(){
+		for (LegalEntity legalEntity : legalEntities) {
+			System.out.println(legalEntity.toString());
+		}
 	}
 	
 }

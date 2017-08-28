@@ -4,7 +4,7 @@ public class CivilCase extends Case {
 	Prosecutor prosecutor;
 
 	CivilCase(Judge judge, Set<JuryMan> juryMen, Prosecutor prosecutor, Defendant defendant, Set<Witness> witnesses) {
-		super(judge, defendant, witnesses, juryMen);
+		super(judge, defendant, witnesses);
 		if(juryMen.size() == 3){
 			this.juryMen = juryMen;
 		}
